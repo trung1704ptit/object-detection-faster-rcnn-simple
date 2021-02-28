@@ -73,6 +73,7 @@ def train(**kwargs):
     trainer.vis.text(dataset.db.label_names, win='labels')
     best_map = 0
     lr_ = opt.lr
+
     for epoch in range(opt.epoch):
         trainer.reset_meters()
         for ii, (img, bbox_, label_, scale) in tqdm(enumerate(dataloader)):
@@ -121,9 +122,6 @@ def train(**kwargs):
             trainer.load(best_path)
             trainer.faster_rcnn.scale_lr(opt.lr_decay)
             lr_ = lr_ * opt.lr_decay
-
-        if epoch == 13: 
-            break
 
 
 if __name__ == '__main__':
